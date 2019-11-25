@@ -6,10 +6,10 @@ newLines = []
 lineNumberCount = 1
 
 if len(sys.argv) != 2:
-    print "Invalid arguments: Please put SUT as second argument"
+    print("Invalid arguments: Please put SUT as second argument")
     sys.exit()
 
-print "Generating Mutant List for:", str(sys.argv[1])
+print("Generating Mutant List for:"), str(sys.argv[1])
 newLines.append("Library of Mutants\n\n")
 newLines.append("Line\t\tMutant\n")
 try:
@@ -25,5 +25,5 @@ try:
         with open("library-of-mutants.txt", "w") as f1:
             f1.writelines(newLines)
 except:
-    print "Error with file"
+    print("Error with file")
     sys.exit()

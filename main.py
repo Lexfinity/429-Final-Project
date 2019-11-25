@@ -42,60 +42,77 @@ for l in lines:
     print("Count: %d" %counter)
 
     if '/' in l:
-        mutant = l.replace('+', '-', 1)
+        mutant = l.replace('/', '-', 1)
         # injectedMutants[counter] = mutant
         injectedMutants.append(mutant)
         print("Injected '-' operator")
         counter += 1
-        mutant = l.replace('-', '*', 1)
+        mutant = l.replace('/', '*', 1)
         # injectedMutants[counter] = mutant
         injectedMutants.append(mutant)
         print("Injected '*' operator")
         counter += 1
-        mutant = l.replace('*', '/', 1)
+        mutant = l.replace('/', '+', 1)
         # injectedMutants[counter] = mutant
         injectedMutants.append(mutant)
-        print("Injected '-' operator")
+        print("Injected '+' operator")
         counter += 1
 
     if '-' in l:
+        mutant = l.replace('-', '/', 1)
+        # injectedMutants[counter] = mutant
+        injectedMutants.append(mutant)
+        print("Injected '/' operator")
+        counter += 1
         mutant = l.replace('-', '*', 1)
         # injectedMutants[counter] = mutant
         injectedMutants.append(mutant)
         print("Injected '*' operator")
         counter += 1
-        mutant = l.replace('*', '/', 1)
+        mutant = l.replace('-', '+', 1)
         # injectedMutants[counter] = mutant
         injectedMutants.append(mutant)
-        print("Injected '-' operator")
+        print("Injected '+' operator")
+        counter += 1
+
+    if '+' in l:
+        mutant = l.replace('+', '/', 1)
+        # injectedMutants[counter] = mutant
+        injectedMutants.append(mutant)
+        print("Injected '/' operator")
+        counter += 1
+        mutant = l.replace('+', '*', 1)
+        # injectedMutants[counter] = mutant
+        injectedMutants.append(mutant)
+        print("Injected '*' operator")
         counter += 1
         mutant = l.replace('+', '-', 1)
         # injectedMutants[counter] = mutant
         injectedMutants.append(mutant)
         print("Injected '-' operator")
         counter += 1
-    
-    # if '-' in l:
-    #     mutant = l.replace('-', '+', 1)
-    #     lines[counter] = mutant
-    #     print("Injected '+' operator")
 
-    # if '/' in l:
-    #     mutant = l.replace('/', '*', 1)
-    #     lines[counter] = mutant
-    #     print("Injected '*' operator")
-
-    # if '*' in l:
-    #     mutant = l.replace('*', '/', 1)
-    #     lines[counter] = mutant
-    #     print("Injected '/' operator")
-
-
-        
+    if '*' in l:
+        mutant = l.replace('*', '/', 1)
+        # injectedMutants[counter] = mutant
+        injectedMutants.append(mutant)
+        print("Injected '/' operator")
+        counter += 1
+        mutant = l.replace('*', '-', 1)
+        # injectedMutants[counter] = mutant
+        injectedMutants.append(mutant)
+        print("Injected '-' operator")
+        counter += 1
+        mutant = l.replace('*', '+', 1)
+        # injectedMutants[counter] = mutant
+        injectedMutants.append(mutant)
+        print("Injected '+' operator")
+        counter += 1
+            
 print(injectedMutants)
 
 outfile= open("mutants.txt","w")
-for line in lines:
+for line in injectedMutants:
     outfile.write(line)
     outfile.write('\n')
 outfile.close()
