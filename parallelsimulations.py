@@ -24,14 +24,19 @@ def threadingloop(l, m):
 
     expected = eval(l)
     actual = eval(m)
-    if(len(l) == len(m)):
+    if(len(l) == len(m) and (l[0] == m[0])):
         if(expected != actual):
-                print("mutant killed! \n""expression: %s" %l + "\t expected: %f\n" %expected + "expression: %s" %m + "\t actual: %f" %actual)
+            print("mutant killed! \n""expression: %s" %l + "\t expected: %f\n" %expected + "expression: %s" %m + "\t actual: %f" %actual)
 
 
 
-a = 1
-b = 2
+a = input("Enter value for a : " )
+b = input("Enter value for b : " )
+
+print("test vector < " + a + ", " + b +" > ")
+
+a = int(a)
+b = int(b) 
 
 for l in lines:
     for m in range(len(mLines) - 3): 
