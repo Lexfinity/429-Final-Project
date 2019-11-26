@@ -17,8 +17,10 @@ try:
         lines = f.readlines()
 
         for line in lines:
-            if "/" in line or "+" in line or "-" in line or "=" in line or "*" in line:
-                newLines.append(str(lineNumberCount) +  "\t\t" + str(line))
+            if "/" in line or "+" in line or "-" in line or "*" in line: #or "=" in line:
+                l = line[line.find('=') + 1:].strip()
+                print(l)
+                newLines.append(str(lineNumberCount) +  "\t\t" + str(l) +"\n")
             lineNumberCount+=1
 
         # lines = [l for l in lines if "/" in l]
