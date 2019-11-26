@@ -1,6 +1,6 @@
 import threading
 
-f=open("library-of-mutants.txt", "r")
+f=open("inputs.txt", "r")
 
 if f.mode == 'r':
     contents = f.readlines()
@@ -35,9 +35,9 @@ b = 2
 
 for l in lines:
     for m in mLines: 
-        t = threading.Thread(target=threadingloop, args=(l, m))
-        t2 = threading.Thread(target=threadingloop, args=(l, m))
-        t3 = threading.Thread(target=threadingloop, args=(l, m))
+        t = threading.Thread(target=threadingloop, args=(l, m, ))
+        t2 = threading.Thread(target=threadingloop, args=(l, m, ))
+        t3 = threading.Thread(target=threadingloop, args=(l, m, ))
    
         t.start()
         t2.start()
