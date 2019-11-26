@@ -1,0 +1,33 @@
+mutant killed! 
+expression: a * b	 expected: 2.000000
+expression: a / b	 actual: 0.500000
+mutant killed! 
+expression: a * b	 expected: 2.000000
+expression: a - b	 actual: -1.000000
+mutant killed! 
+expression: a * b	 expected: 2.000000
+expression: a + b	 actual: 3.000000
+mutant killed! 
+expression: b + b	 expected: 4.000000
+expression: b / b	 actual: 1.000000
+mutant killed! 
+expression: b + b	 expected: 4.000000
+expression: b - b	 actual: 0.000000
+mutant killed! 
+expression: b - 2 / 4	 expected: 1.500000
+expression: b - 2 - 4	 actual: -4.000000
+mutant killed! 
+expression: b - 2 / 4	 expected: 1.500000
+expression: b - 2 * 4	 actual: -6.000000
+mutant killed! 
+expression: b - 2 / 4	 expected: 1.500000
+expression: b - 2 + 4	 actual: 4.000000
+mutant killed! 
+expression: b - 2 / 4	 expected: 1.500000
+expression: b / 2 / 4	 actual: 0.250000
+mutant killed! 
+expression: b - 2 / 4	 expected: 1.500000
+expression: b * 2 / 4	 actual: 1.000000
+mutant killed! 
+expression: b - 2 / 4	 expected: 1.500000
+expression: b + 2 / 4	 actual: 2.500000

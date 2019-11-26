@@ -19,14 +19,16 @@ if f.mode == 'r':
 f.close()
 
 
-
+parallelresults = open('parallelresults.txt', 'w')
 def threadingloop(l, m): 
 
     expected = eval(l)
     actual = eval(m)
     if(len(l) == len(m) and (l[0] == m[0])):
         if(expected != actual):
+            parallelresults.write("mutant killed! \n""expression: %s" %l + "\t expected: %f\n" %expected + "expression: %s" %m + "\t actual: %f" %actual +"\n")
             print("mutant killed! \n""expression: %s" %l + "\t expected: %f\n" %expected + "expression: %s" %m + "\t actual: %f" %actual)
+
 
 
 
@@ -49,5 +51,4 @@ for l in (0, len(lines), 3):
         t2.start()
         t3.start()
 
-
-        
+parallelresults.close()
