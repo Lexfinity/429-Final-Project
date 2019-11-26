@@ -38,12 +38,13 @@ print("test vector < " + a + ", " + b +" > ")
 a = int(a)
 b = int(b) 
 
-for l in lines:
-    for m in range(len(mLines) - 3): 
-        t = threading.Thread(target=threadingloop, args=(l, mLines[m], ))
-        t2 = threading.Thread(target=threadingloop, args=(l, mLines[m + 1], ))
-        t3 = threading.Thread(target=threadingloop, args=(l, mLines[m + 2] , ))
+for l in (0, len(lines), 3):
+    for m in range(len(mLines)): 
+        t = threading.Thread(target=threadingloop, args=(lines[l], mLines[m], ))
+        t2 = threading.Thread(target=threadingloop, args=(lines[l+1], mLines[m + 1], ))
+        t3 = threading.Thread(target=threadingloop, args=(lines[l+2], mLines[m + 2] , ))
    
+    
         t.start()
         t2.start()
         t3.start()
