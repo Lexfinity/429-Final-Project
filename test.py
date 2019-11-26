@@ -1,62 +1,63 @@
-# infile= open("inputs.txt","r")
-# readL = infile.readlines()
-# lines = [line.replace('\n', '') for line in readL]
-# infile.close()
-# count = 0
-# charIndex = 0
-# print("Each arithmetic operator can have 3 other possible operators as mutants")
-# print("+, -, *, /")
-# print()
+f=open("inputs.txt", "r")
 
-# for line in lines:
-#     print(line)
-#     print("Line %d under test:" % count)
+if f.mode == 'r':
+    contents = f.readlines()
+    lines = [content.replace('\n', '') for content in contents]
+    # print(lines)
+
+f.close()
+
+f=open("mutants.txt", "r")
+
+if f.mode == 'r':
+    contents = f.readlines()
+    mLines = [content.replace('\n', '') for content in contents]
+    # print(mLines)
+
+f.close()
+
+a = input("Enter value for a : " )
+b = input("Enter value for b : " )
+
+print("test vector < " + a + ", " + b +" > ")
+
+a = int(a)
+b = int(b)
+
+mutantindex = len(mLines)
+currCount = 0
+index = len(lines)
+tracker = 0
+charMult = 0
+charDiv = 0
+charAdd = 0
+charSub = 0
+
+for line in lines:
+    actual = eval(line)
+    if (line.find('*') != -1):
+        charMult=charMult+1
+    if(line.find('+') != -1):
+        charAdd=charAdd+1
+    if(line.find('-') != -1):
+        charSub=charSub+1
+    if(line.find('/') != -1):
+        charDiv=charDiv+1
+    currCount = 3 * (charDiv + charMult + charSub + charAdd)
     
-#     if '+' in line:
-#         print("Line %d has '+' operator" % count)
-#         newline = line.replace('+', '-', 1)
-#         lines[count] = newline
-#         print("Injecting '-' operator as a mutant")
-        
-        
-#     if '-' in line:
-#         print("Line %d has '-' operator" % count)
-#         newline = line.replace('-', '+', 1)
-#         lines[count] = newline
-#         print("Injecting '+' operator as a mutant")
-
-#     if '*' in line:
-#         print("Line %d has '*' operator" % count)
-#         newline = line.replace('*', '/', 1)
-#         lines[count] = newline
-#         print("Injecting '/' operator as a mutant")
     
-#     if '/' in line:
-#         print("Line %d has '/' operator" % count)
-#         newline = line.replace('/', '*', 1)
-#         lines[count] = newline
-#         print("Injecting '*' operator as a mutant")
+    for i in range((tracker + currCount)):
+        expected = eval(mLines[i])
+        if(expected != actual and (line[0] == mLines[i][0]) ):
+            print("mutant killed! \n""expression: %s" %line + "\t expected: %f\n" %actual + "expression: %s" %mLines[i] + "\t actual: %f" %expected)
+    
+    tracker += currCount
 
-#     count += 1
-#     print()
 
-# #print(lines)
-
-# outfile= open("output.txt","w")
-# for line in lines:
-#     outfile.write(line)
-#     outfile.write('\n')
-# outfile.close()
-
-import sys
-b = 2
-a = b+2
-b = a-1
-c = b/2
-d = a*b
-arr=list()
-arr.append(a)
-arr.append(b)
-arr.append(c)
-arr.append(d)
-print(arr)
+# for l in lines:
+#     for m in mLines:
+#         expected = eval(l)
+#         actual = eval(m)
+#         if(len(l) == len(m)):
+#             if(expected != actual):
+#                 print("mutant killed! \n""expression: %s" %l + "\t expected: %f\n" %expected + "expression: %s" %m + "\t actual: %f" %actual)

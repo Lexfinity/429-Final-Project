@@ -34,10 +34,10 @@ a = 1
 b = 2
 
 for l in lines:
-    for m in mLines: 
-        t = threading.Thread(target=threadingloop, args=(l, m, ))
-        t2 = threading.Thread(target=threadingloop, args=(l, m, ))
-        t3 = threading.Thread(target=threadingloop, args=(l, m, ))
+    for m in range(len(mLines) - 3): 
+        t = threading.Thread(target=threadingloop, args=(l, mLines[m], ))
+        t2 = threading.Thread(target=threadingloop, args=(l, mLines[m + 1], ))
+        t3 = threading.Thread(target=threadingloop, args=(l, mLines[m + 2] , ))
    
         t.start()
         t2.start()

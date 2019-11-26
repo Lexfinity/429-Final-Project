@@ -7,36 +7,6 @@ if f.mode == 'r':
 
 f.close()
 
-injectedMutants = []
-counter = 0
-
-# for i in range(2):
-#     for l in lines:
-#         print("Current line: " + l)
-#         print("Count: %d" %counter)
-
-#         if '+' in l:
-#             mutant = l.replace('+', '-', 1)
-#             injectedMutants[counter] = mutant
-#             print("Injected '-' operator")
-    
-#         if '-' in l:
-#             mutant = l.replace('-', '+', 1)
-#             injectedMutants[counter] = mutant
-#             print("Injected '+' operator")
-
-#         if '/' in l:
-#             mutant = l.replace('/', '*', 1)
-#             injectedMutants[counter] = mutant
-#             print("Injected '*' operator")
-
-#         if '*' in l:
-#             mutant = l.replace('*', '/', 1)
-#             injectedMutants[counter] = mutant
-#             print("Injected '/' operator")
-
-#         counter = counter + 1
-
 inputfile= open("inputs.txt","w")
 for l in lines:
     if "/" in l or "+" in l or "-" in l or "*" in l:
@@ -44,12 +14,16 @@ for l in lines:
         inputfile.write(l)
         inputfile.write('\n')
 inputfile.close()
+
+injectedMutants = []
+# injectedMutants.append([])
+# i = 0
+counter = 0
     
 for l in lines:
     l = l[l.find('\t\t') + 1:].strip()
     print("Current line: " + l)
     print("Count: %d" %counter)
-
 
     if '/' in l:
         # answer = eval(l)
@@ -140,6 +114,7 @@ for l in lines:
         injectedMutants.append(mutant)
         print("Injected '+' operator")
         counter += 1
+    # i += 1
         
 print(injectedMutants)
 
