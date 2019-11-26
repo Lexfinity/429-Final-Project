@@ -1,4 +1,4 @@
-f=open("library-of-mutants.txt", "r")
+f=open("inputs.txt", "r")
 
 if f.mode == 'r':
     contents = f.readlines()
