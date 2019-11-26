@@ -24,10 +24,13 @@ print("test vector < " + a + ", " + b +" > ")
 a = int(a)
 b = int(b) 
 
+results = open('results.txt', 'w')
 for l in lines:
     for m in mLines:
         expected = eval(l)
         actual = eval(m)
         if(len(l) == len(m) and (l[0] == m[0])):
             if(expected != actual):
+                results.write("mutant killed! \n""expression: %s" %l + "\t expected: %f\n" %expected + "expression: %s" %m + "\t actual: %f" %actual +"\n")
                 print("mutant killed! \n""expression: %s" %l + "\t expected: %f\n" %expected + "expression: %s" %m + "\t actual: %f" %actual)
+results.close()
