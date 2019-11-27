@@ -1,6 +1,8 @@
 #!/usr/bin/python
 
 import sys
+import os
+
 temp = []
 if len(sys.argv) != 3:
     print("Invalid arguments: Please put SUT as first argument and mutants as second")
@@ -9,6 +11,7 @@ if len(sys.argv) != 3:
 print("Generating Mutant files for:"), str(sys.argv[1]), "and ", str(sys.argv[1])
 
 try:
+    os.makedirs('./mutants')
     SUTLineNumber = 1
     mutantLineNumber = 1
 
@@ -29,7 +32,7 @@ try:
   
         temp[int(lineNumberToInject) - 1] = newLine3 + '\n'
                 
-        with open(str(mutantLineNumber) + str(SUTLineNumber) + ".py", "w") as f1:
+        with open("mutants/" + str(mutantLineNumber) + str(SUTLineNumber) + ".py", "w") as f1:
             f1.writelines(temp)   
             SUTLineNumber += 1
         mutantLineNumber += 1
