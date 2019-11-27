@@ -22,17 +22,11 @@ try:
         lineNumberToInject = MutantLine[:MutantLine.find('\t\t')]
         temp = []
         temp = list(SUTlines)
-        # print(temp)
 
         newLine1 = temp[int(lineNumberToInject) - 1]
-        # print(newLine1)
         newLine2 = newLine1[:newLine1.find('=') + 1]
-        # print(newLine2)
         newLine3 = newLine2 + ' ' + MutantLine[MutantLine.find('\t\t') :].strip()
-        # print(newLine3)
   
-        # [.find('='):] + MutantLine[MutantLine.find('\t\t') + 1:]
-        # print(newLine)
         temp[int(lineNumberToInject) - 1] = newLine3 + '\n'
                 
         with open(str(mutantLineNumber) + str(SUTLineNumber) + ".py", "w") as f1:
@@ -44,4 +38,3 @@ except IOError:
     type, value, traceback = sys.exc_info()
     print('Error opening %s: %s' % (value.filename, value.strerror))
     print("Error with file")
-    # sys.exit()
