@@ -1,63 +1,55 @@
-import time
 import os
 import sys
 
 try:
-    # for filename in os.listdir('mutants'):
-        # print(filename)
-        # execfile(filename)
-        from subprocess import call
-        all(["python", "mutants/11.py"])
+    # check args
+    if len(sys.argv) != 2:
+        print("Invalid arguments: Please put SUT as first argument")
+    aliveMutants = []
+    killedMutants = []
+    # redirect stdout to file
+    sys.stdout = open('mutant-generated-output.txt', 'w')
+
+    # store all filenames of mutants folder in files list
+    files = os.listdir("mutants")
+
+    # write the correct answer on first line of the file
+    exec(open(sys.argv[1]).read())
+
+    # write the name of file then the output of the script
+    for file in files:
+        print(file)
+        exec(open("mutants/" + file).read())
+    
+    # redirect stdout back to normal
+    sys.stdout = sys.__stdout__
+
+    # store in list all lines
+    with open("mutant-generated-output.txt") as f1:
+        lines = f1.readlines()
+
+    # remove '\n' chars from list
+    for i in range(0, len(lines)):
+        lines[i] = lines[i].replace('\n', '')
+
+    rightAnswer = lines[0]
+
+    # iterate through every second line to check if mutant killed or still alive
+    for i in range(1, len(lines), 2):
+        if int(lines[i + 1]) == int(rightAnswer):
+            # print("Killed Mutant", lines[i])
+            killedMutants.append(lines[i])
+        else:
+            # print("Mutant Alive", lines[i])
+            aliveMutants.append(lines[i])
+
+    print("Killed Mutants")
+    print(killedMutants)
+
+    print("Alive Mutants")
+    print(aliveMutants)
 
 except IOError:
     type, value, traceback = sys.exc_info()
     print('Error opening %s: %s' % (value.filename, value.strerror))
     print("Error with file")
-
-# start_time = time.time()
-
-# f=open("inputs.txt", "r")
-
-# if f.mode == 'r':
-#     contents = f.readlines()
-#     lines = [content.replace('\n', '') for content in contents]
-#     # print(lines)
-
-# f.close()
-
-# f=open("mutants.txt", "r")
-
-# if f.mode == 'r':
-#     contents = f.readlines()
-#     mLines = [content.replace('\n', '') for content in contents]
-#     # print(mLines)
-
-# f.close()
-
-# a = input("Enter value for a : " )
-# b = input("Enter value for b : " )
-# count = 0
-# results = open('results.txt', 'w')
-
-# print("test vector < " + a + ", " + b +" > ")
-# results.write("test vector < " + a + ", " + b +" > \n")
-
-# a = int(a)
-# b = int(b) 
-
-
-# for l in lines:
-#     for m in mLines:
-#         expected = eval(l)
-#         actual = eval(m)
-#         if(len(l) == len(m) and (l[0] == m[0])):
-#             if(expected != actual):
-#                 count += 1
-#                 results.write("mutant killed! \n""expression: %s" %l + "\t expected: %f\n" %expected + "expression: %s" %m + "\t actual: %f" %actual +"\n")
-#                 print("mutant killed! \n""expression: %s" %l + "\t expected: %f\n" %expected + "expression: %s" %m + "\t actual: %f" %actual)
-# denom = len(mLines)
-# percent = count/ len(mLines)
-# results.write("Percentage of mutants killed: %d " %count + "/ %d " %len(mLines) +  "= %f"  %percent + "\n")
-# print("Percentage of mutants killed: %d " %count + "/ %d " %len(mLines) +  "= %f"  %percent)
-# results.write("--- %s seconds ---" % (time.time() - start_time))
-# results.close()

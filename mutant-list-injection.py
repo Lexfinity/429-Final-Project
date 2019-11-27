@@ -8,7 +8,7 @@ if len(sys.argv) != 3:
     print("Invalid arguments: Please put SUT as first argument and mutants as second")
     sys.exit()
 
-print("Generating Mutant files for:"), str(sys.argv[1]), "and ", str(sys.argv[1])
+print("Generating Mutant files for:"), str(sys.argv[1]), "and ", str(sys.argv[2])
 
 try:
     os.makedirs('./mutants')
