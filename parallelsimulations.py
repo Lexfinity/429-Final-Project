@@ -1,4 +1,7 @@
 import threading
+import time
+
+start_time = time.time()
 
 f=open("inputs.txt", "r")
 
@@ -27,7 +30,7 @@ def threadingloop(l, m):
     if(len(l) == len(m) and (l[0] == m[0])):
         if(expected != actual):
             parallelresults.write("mutant killed! \n""expression: %s" %l + "\t expected: %f\n" %expected + "expression: %s" %m + "\t actual: %f" %actual +"\n")
-            print("mutant killed! \n""expression: %s" %l + "\t expected: %f\n" %expected + "expression: %s" %m + "\t actual: %f" %actual)
+            # print("mutant killed! \n""expression: %s" %l + "\t expected: %f\n" %expected + "expression: %s" %m + "\t actual: %f" %actual)
 
 
 
@@ -50,5 +53,6 @@ for l in (0, len(lines), 3):
         t.start()
         t2.start()
         t3.start()
-
+# parallelresults.write("--- %s seconds ---" % (time.time() - start_time))
 parallelresults.close()
+

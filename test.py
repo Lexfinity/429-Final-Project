@@ -1,63 +1,125 @@
-f=open("inputs.txt", "r")
+f=open("library-of-mutants.txt", "r")
 
 if f.mode == 'r':
     contents = f.readlines()
     lines = [content.replace('\n', '') for content in contents]
-    # print(lines)
+    print(lines)
 
 f.close()
 
-f=open("mutants.txt", "r")
+inputfile= open("inputs.txt","w")
+for l in lines:
+    if "/" in l or "+" in l or "-" in l or "*" in l:
+        # l = l[l.find('\t\t') + 1:].strip()
+        inputfile.write(l)
+        inputfile.write('\n')
+inputfile.close()
 
-if f.mode == 'r':
-    contents = f.readlines()
-    mLines = [content.replace('\n', '') for content in contents]
-    # print(mLines)
-
-f.close()
-
-a = input("Enter value for a : " )
-b = input("Enter value for b : " )
-
-print("test vector < " + a + ", " + b +" > ")
-
-a = int(a)
-b = int(b)
-
-mutantindex = len(mLines)
-currCount = 0
-index = len(lines)
-tracker = 0
-charMult = 0
-charDiv = 0
-charAdd = 0
-charSub = 0
-
-for line in lines:
-    actual = eval(line)
-    if (line.find('*') != -1):
-        charMult=charMult+1
-    if(line.find('+') != -1):
-        charAdd=charAdd+1
-    if(line.find('-') != -1):
-        charSub=charSub+1
-    if(line.find('/') != -1):
-        charDiv=charDiv+1
-    currCount = 3 * (charDiv + charMult + charSub + charAdd)
+injectedMutants = []
+# injectedMutants.append([])
+# i = 0
+counter = 0
     
-    
-    for i in range((tracker + currCount)):
-        expected = eval(mLines[i])
-        if(expected != actual and (line[0] == mLines[i][0]) ):
-            print("mutant killed! \n""expression: %s" %line + "\t expected: %f\n" %actual + "expression: %s" %mLines[i] + "\t actual: %f" %expected)
-    
-    tracker += currCount
+for l in lines:
+    # l = l[l.find('\t\t') + 1:].strip()
+    print("Current line: " + l)
+    print("Count: %d" %counter)
 
+    if '/' in l:
+        # answer = eval(l)
+        mutant = l.replace('/', '-', 1)
+        # mutantAnswer = eval(mutant)
+        # injectedMutants[counter] = mutant
+        # mutant = mutant[mutant.find('\t\t') + 1:].strip()
+        injectedMutants.append(mutant)
+        print("Injected '-' operator")
+        counter += 1
+        # if (answer != mutantAnswer):
+        #     print("mutant killed!\n Expected: %d" %answer + "\n Actual: %d" %mutantAnswer)
+        mutant = l.replace('/', '*', 1)
+        # mutantAnswer = eval(mutant)
+        # injectedMutants[counter] = mutant
+        # mutant = mutant[mutant.find('\t\t') + 1:].strip()
+        injectedMutants.append(mutant)
+        print("Injected '*' operator")
+        counter += 1
+        # if (answer != mutantAnswer):
+        #     print("mutant killed!\n Expected: %d" %answer + "\n Actual: %d" %mutantAnswer)
+        mutant = l.replace('/', '+', 1)
+        # mutantAnswer = eval(mutant)
+        # injectedMutants[counter] = mutant
+        # mutant = mutant[mutant.find('\t\t') + 1:].strip()
+        injectedMutants.append(mutant)
+        print("Injected '+' operator")
+        counter += 1
+        # if (answer != mutantAnswer):
+        #     print("mutant killed!\n Expected: %d" %answer + "\n Actual: %d" %mutantAnswer)
 
-# for l in lines:
-#     for m in mLines:
-#         expected = eval(l)
-#         actual = eval(m)
-#         if(len(l) == len(m)):
-#             if(expected != actual):
-#                 print("mutant killed! \n""expression: %s" %l + "\t expected: %f\n" %expected + "expression: %s" %m + "\t actual: %f" %actual)
+    if '-' in l:
+        mutant = l.replace('-', '/', 1)
+        # injectedMutants[counter] = mutant
+        # mutant = mutant[mutant.find('\t\t') + 1:].strip()
+        injectedMutants.append(mutant)
+        print("Injected '/' operator")
+        counter += 1
+        mutant = l.replace('-', '*', 1)
+        # injectedMutants[counter] = mutant
+        # mutant = mutant[mutant.find('\t\t') + 1:].strip()
+        injectedMutants.append(mutant)
+        print("Injected '*' operator")
+        counter += 1
+        mutant = l.replace('-', '+', 1)
+        # injectedMutants[counter] = mutant
+        # mutant = mutant[mutant.find('\t\t') + 1:].strip()
+        injectedMutants.append(mutant)
+        print("Injected '+' operator")
+        counter += 1
+
+    if '+' in l:
+        mutant = l.replace('+', '/', 1)
+        # injectedMutants[counter] = mutant
+        # mutant = mutant[mutant.find('\t\t') + 1:].strip()
+        injectedMutants.append(mutant)
+        print("Injected '/' operator")
+        counter += 1
+        mutant = l.replace('+', '*', 1)
+        # injectedMutants[counter] = mutant
+        # mutant = mutant[mutant.find('\t\t') + 1:].strip()
+        injectedMutants.append(mutant)
+        print("Injected '*' operator")
+        counter += 1
+        mutant = l.replace('+', '-', 1)
+        # injectedMutants[counter] = mutant
+        # mutant = mutant[mutant.find('\t\t') + 1:].strip()
+        injectedMutants.append(mutant)
+        print("Injected '-' operator")
+        counter += 1
+
+    if '*' in l:
+        mutant = l.replace('*', '/', 1)
+        # injectedMutants[counter] = mutant
+        # mutant = mutant[mutant.find('\t\t') + 1:].strip()
+        injectedMutants.append(mutant)
+        print("Injected '/' operator")
+        counter += 1
+        mutant = l.replace('*', '-', 1)
+        # injectedMutants[counter] = mutant
+        # mutant = mutant[mutant.find('\t\t') + 1:].strip()
+        injectedMutants.append(mutant)
+        print("Injected '-' operator")
+        counter += 1
+        mutant = l.replace('*', '+', 1)
+        # injectedMutants[counter] = mutant
+        # mutant = mutant[mutant.find('\t\t') + 1:].strip()
+        injectedMutants.append(mutant)
+        print("Injected '+' operator")
+        counter += 1
+    # i += 1
+        
+print(injectedMutants)
+
+outfile= open("mutants.txt","w")
+for line in injectedMutants:
+    outfile.write(line)
+    outfile.write('\n')
+outfile.close()
