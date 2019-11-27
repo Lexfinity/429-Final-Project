@@ -7,13 +7,13 @@ if f.mode == 'r':
 
 f.close()
 
-# inputfile= open("inputs.txt","w")
-# for l in lines:
-#     if "/" in l or "+" in l or "-" in l or "*" in l:
-#         l = l[l.find('\t\t') + 1:].strip()
-#         inputfile.write(l)
-#         inputfile.write('\n')
-# inputfile.close()
+inputfile= open("inputs.txt","w")
+for l in lines:
+    if "/" in l or "+" in l or "-" in l or "*" in l:
+        l = l[l.find('\t\t') + 1:].strip()
+        inputfile.write(l)
+        inputfile.write('\n')
+inputfile.close()
 
 injectedMutants = []
 # injectedMutants.append([])
