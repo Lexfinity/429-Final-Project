@@ -33,4 +33,4 @@ List of alive mutants:
 ['MutantFile1.py']
 
 Percentage of mutants killed: 11/ 12= 0.916667
---- 0.011070013046264648 seconds ---
+--- 0.012991189956665039 seconds ---

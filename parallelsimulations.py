@@ -51,7 +51,7 @@ except IOError:
 
 def threadingloop(l): 
 
-        if  l != float(rightAnswer):
+        if  float(l) != float(rightAnswer):
             #print("Killed Mutant", l)
             killedMutants.append(l)
         else:
@@ -59,6 +59,7 @@ def threadingloop(l):
             aliveMutants.append(l)
 
 linelgt = len(lines)
+
 for l in range(0, linelgt, 6):
     #print(l)
     try: 
@@ -70,6 +71,9 @@ for l in range(0, linelgt, 6):
         t2.start()
         t3.start()
     except IndexError as error: 
+
+        #getting rid of the right answer value 
+        aliveMutants.pop(0)
 
         print("Killed Mutants")
         print(killedMutants)
