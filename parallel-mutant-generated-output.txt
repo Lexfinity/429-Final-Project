@@ -23,6 +23,6 @@ Actual value of the mutant file: MutantFile8.py
 0
 Actual value of the mutant file: MutantFile9.py
 3
-Mutants killed: 10
+Mutants killed: 11
 Mutants alive: 1
-Percentage of mutants killed: 10/ 11= 0.909091--- 0.011990070343017578 seconds ---
+Percentage of mutants killed: 11/ 12= 0.916667--- 0.01858687400817871 seconds ---

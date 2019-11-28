@@ -59,7 +59,8 @@ def threadingloop(l):
             #print("Mutant Alive", l)
             aliveMutants.append(l)
 
-linelgt = len(lines)
+linelgt = len(lines)+(6-len(lines)%6)
+print(linelgt)
 
 for l in range(0, linelgt, 6):
     #print(l)
@@ -71,7 +72,12 @@ for l in range(0, linelgt, 6):
         t1.start()
         t2.start()
         t3.start()
+        
+
     except IndexError as error: 
+
+        t4 = threading.Thread(target=threadingloop, args=[lines[l]])
+        t4.start()
 
         #getting rid of the right answer value 
         aliveMutants.pop(0)
