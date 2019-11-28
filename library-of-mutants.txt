@@ -1,6 +1,6 @@
 Library of Mutants
 
 Line		Mutant
-4		a * b
-5		b + b
-6		b - a /2
+6		a * b
+7		b + b
+8		b - a /2

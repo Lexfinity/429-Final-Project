@@ -5,10 +5,15 @@ import sys
 
 try:
     # check args
-    if len(sys.argv) != 2:
+    if len(sys.argv) != 4:
         print("Invalid arguments: Please put SUT as first argument")
     aliveMutants = []
     killedMutants = []
+
+    variables = {
+        "a" : sys.argv[2],
+		"b" : sys.argv[3],
+	}
     # redirect stdout to file
     sys.stdout = open('parallel-mutant-generated-output.txt', 'w')
 
@@ -17,13 +22,13 @@ try:
 
     # write the correct answer on first line of the file
     # print("Expected value the software under test: ")
-    exec(open(sys.argv[1]).read())
+    exec(open(sys.argv[1]).read(), globals(),variables)
     # print("\n")
 
     # write the name of file then the output of the script
     for file in files:
         print("Actual value of the mutant file: " + file)
-        exec(open("mutants/" + file).read())
+        exec(open("mutants/" + file).read(), globals(),variables)
     
     # redirect stdout back to normal
     sys.stdout = sys.__stdout__

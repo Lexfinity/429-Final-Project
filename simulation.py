@@ -2,11 +2,18 @@ import os
 import sys
 
 try:
+
     # check args
-    if len(sys.argv) != 2:
+    if len(sys.argv) != 4:
         print("Invalid arguments: Please put SUT as first argument")
     aliveMutants = []
     killedMutants = []
+
+    variables = {
+        "a" : sys.argv[2],
+		"b" : sys.argv[3],
+	}
+
     # redirect stdout to file
     sys.stdout = open('mutant-generated-output.txt', 'w')
     # sys.stdout.write("Expected value the software under test: \n")
@@ -16,13 +23,13 @@ try:
 
     # write the correct answer on first line of the file
     # print("Expected value the software under test: ")
-    exec(open(sys.argv[1]).read())
+    exec(open(sys.argv[1]).read(),globals(),variables)
     # print("\n")
 
     # write the name of file then the output of the script
     for file in files:
         print(file)
-        exec(open("mutants/" + file).read())
+        exec(open("mutants/" + file).read(), globals(),variables)
     
     # redirect stdout back to normal
     sys.stdout = sys.__stdout__
@@ -59,7 +66,9 @@ try:
     output.write("List of killed mutants: \n" + str(killedMutants) + "\n")
     output.write("\nMutants alive: %d\n" %len(aliveMutants))
     output.write("List of alive mutants: \n" + str(aliveMutants) + "\n")
+    output.write("\n mutants killed using test vector: <" + sys.argv[2] + "," + sys.argv[3] + ">\n")
     output.write("\nPercentage of mutants killed: %d" %len(killedMutants) + "/ %d" %(len(killedMutants) + len(aliveMutants)) + "= %f" %percentage)
+    
     output.close()
     
 

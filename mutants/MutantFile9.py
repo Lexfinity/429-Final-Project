@@ -1,5 +1,7 @@
-a = 1
-b = 1
+import sys
+
+a = int(sys.argv[2])
+b = int(sys.argv[3])
 
 a = a * b 
 b = b + b

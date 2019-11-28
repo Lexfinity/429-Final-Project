@@ -1,35 +1,37 @@
-1.5
+3.0
 MutantFile1.py
-1.5
+3.75
 MutantFile10.py
 1.0
 MutantFile11.py
-1.0
+4.0
 MutantFile12.py
-2.5
+5.0
 MutantFile2.py
-2.0
+4.5
 MutantFile3.py
-1.0
+2.5
 MutantFile4.py
-0.5
+0.0
 MutantFile5.py
-0.5
+3.0
 MutantFile6.py
--0.5
+-1.0
 MutantFile7.py
--1
+0
 MutantFile8.py
 0
 MutantFile9.py
-3
+4
 
 Mutants killed: 11
 List of killed mutants: 
-['MutantFile10.py', 'MutantFile11.py', 'MutantFile12.py', 'MutantFile2.py', 'MutantFile3.py', 'MutantFile4.py', 'MutantFile5.py', 'MutantFile6.py', 'MutantFile7.py', 'MutantFile8.py', 'MutantFile9.py']
+['MutantFile1.py', 'MutantFile10.py', 'MutantFile11.py', 'MutantFile12.py', 'MutantFile2.py', 'MutantFile3.py', 'MutantFile4.py', 'MutantFile6.py', 'MutantFile7.py', 'MutantFile8.py', 'MutantFile9.py']
 
 Mutants alive: 1
 List of alive mutants: 
-['MutantFile1.py']
+['MutantFile5.py']
+
+ mutants killed using test vector: <1,2>
 
 Percentage of mutants killed: 11/ 12= 0.916667
