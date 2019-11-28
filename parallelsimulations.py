@@ -3,6 +3,7 @@ import time
 import os
 import sys
 
+start_time = time.time()
 try:
     # check args
     if len(sys.argv) != 2:
@@ -51,15 +52,15 @@ except IOError:
 def threadingloop(l): 
 
         if  l != float(rightAnswer):
-            print("Killed Mutant", l)
+            #print("Killed Mutant", l)
             killedMutants.append(l)
         else:
-            print("Mutant Alive", l)
+            #print("Mutant Alive", l)
             aliveMutants.append(l)
 
 linelgt = len(lines)
 for l in range(0, linelgt, 6):
-    print(l)
+    #print(l)
     try: 
         t1 = threading.Thread(target=threadingloop, args=[lines[l]])
         t2 = threading.Thread(target=threadingloop, args=[lines[l+2]])
@@ -82,6 +83,7 @@ for l in range(0, linelgt, 6):
         output.write("Mutants killed: %d\n" %len(killedMutants))
         output.write("Mutants alive: %d\n" %len(aliveMutants))
         output.write("Percentage of mutants killed: %d" %len(killedMutants) + "/ %d" %(len(killedMutants) + len(aliveMutants)) + "= %f" %percentage)
+        output.write("--- %s seconds ---" % (time.time() - start_time))
         output.close()
 
 

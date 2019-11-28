@@ -1,6 +1,8 @@
 import os
 import sys
+import time
 
+start_time = time.time()
 try:
     # check args
     if len(sys.argv) != 2:
@@ -60,8 +62,8 @@ try:
     output.write("\nMutants alive: %d\n" %len(aliveMutants))
     output.write("List of alive mutants: \n" + str(aliveMutants) + "\n")
     output.write("\nPercentage of mutants killed: %d" %len(killedMutants) + "/ %d" %(len(killedMutants) + len(aliveMutants)) + "= %f" %percentage)
+    output.write("\n--- %s seconds ---" % (time.time() - start_time))
     output.close()
-    
 
 except IOError:
     type, value, traceback = sys.exc_info()
