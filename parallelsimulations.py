@@ -60,27 +60,29 @@ def threadingloop(l):
 
 
 for l in (0, len(lines), 6):
-    t1 = threading.Thread(target=threadingloop, args=[lines[l]])
-    t2 = threading.Thread(target=threadingloop, args=[lines[l+2]])
-    t3 = threading.Thread(target=threadingloop, args=[lines[l+4]])
-   
+    try: 
+        t1 = threading.Thread(target=threadingloop, args=[lines[l]])
+        t2 = threading.Thread(target=threadingloop, args=[lines[l+2]])
+        t3 = threading.Thread(target=threadingloop, args=[lines[l+4]])
     
-    t1.start()
-    t2.start()
-    t3.start()
+        
+        t1.start()
+        t2.start()
+        t3.start()
+    except IndexError as error:
 
-print("Killed Mutants")
-print(killedMutants)
+        print("Killed Mutants")
+        print(killedMutants)
 
-print("Alive Mutants")
-print(aliveMutants)
+        print("Alive Mutants")
+        print(aliveMutants)
 
-output = open("mutant-generated-output.txt", 'a')
+        output = open("parallel-mutant-generated-output.txt", 'a')
 
-percentage = len(killedMutants) / (len(killedMutants) + len(aliveMutants))
-output.write("Mutants killed: %d\n" %len(killedMutants))
-output.write("Mutants alive: %d\n" %len(aliveMutants))
-output.write("Percentage of mutants killed: %d" %len(killedMutants) + "/ %d" %(len(killedMutants) + len(aliveMutants)) + "= %f" %percentage)
-output.close()
+        percentage = len(killedMutants) / (len(killedMutants) + len(aliveMutants))
+        output.write("Mutants killed: %d\n" %len(killedMutants))
+        output.write("Mutants alive: %d\n" %len(aliveMutants))
+        output.write("Percentage of mutants killed: %d" %len(killedMutants) + "/ %d" %(len(killedMutants) + len(aliveMutants)) + "= %f" %percentage)
+        output.close()
 
 
