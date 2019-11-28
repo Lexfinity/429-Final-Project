@@ -5,7 +5,8 @@ import time
 start_time = time.time()
 try:
     # check args
-    if len(sys.argv) != 2:
+    start_time = time.time()
+    if len(sys.argv) != 4:
         print("Invalid arguments: Please put SUT as first argument")
     aliveMutants = []
     killedMutants = []
@@ -61,8 +62,10 @@ try:
     output.write("List of killed mutants: \n" + str(killedMutants) + "\n")
     output.write("\nMutants alive: %d\n" %len(aliveMutants))
     output.write("List of alive mutants: \n" + str(aliveMutants) + "\n")
-    output.write("\nPercentage of mutants killed: %d" %len(killedMutants) + "/ %d" %(len(killedMutants) + len(aliveMutants)) + "= %f" %percentage)
-    output.write("\n--- %s seconds ---" % (time.time() - start_time))
+    output.write("\n mutants killed using test vector: <" + sys.argv[2] + "," + sys.argv[3] + ">\n")
+    output.write("\nPercentage of mutants killed: %d" %len(killedMutants) + "/ %d" %(len(killedMutants) + len(aliveMutants)) + "= %f\n" %percentage)
+    output.write("\nTIME:\n")
+    output.write("--- %s seconds ---" % (time.time() - start_time))
     output.close()
 
 except IOError:

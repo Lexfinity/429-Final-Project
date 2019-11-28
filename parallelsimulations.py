@@ -6,7 +6,8 @@ import sys
 start_time = time.time()
 try:
     # check args
-    if len(sys.argv) != 2:
+    start_time = time.time()
+    if len(sys.argv) != 4:
         print("Invalid arguments: Please put SUT as first argument")
     aliveMutants = []
     killedMutants = []
@@ -83,11 +84,12 @@ for l in range(0, linelgt, 6):
 
         output = open("parallel-mutant-generated-output.txt", 'a')
 
-        percentage = len(killedMutants) / (len(killedMutants) + len(aliveMutants))
-        output.write("Mutants killed: %d\n" %len(killedMutants))
-        output.write("Mutants alive: %d\n" %len(aliveMutants))
-        output.write("Percentage of mutants killed: %d" %len(killedMutants) + "/ %d" %(len(killedMutants) + len(aliveMutants)) + "= %f" %percentage)
-        output.write("--- %s seconds ---" % (time.time() - start_time))
-        output.close()
+percentage = len(killedMutants) / (len(killedMutants) + len(aliveMutants))
+output.write("Mutants killed: %d\n" %len(killedMutants))
+output.write("Mutants alive: %d\n" %len(aliveMutants))
+output.write("Percentage of mutants killed: %d" %len(killedMutants) + "/ %d" %(len(killedMutants) + len(aliveMutants)) + "= %f\n" %percentage)
+output.write("\nTIME:\n")
+output.write("--- %s seconds ---" % (time.time() - start_time))
+output.close()
 
 
