@@ -50,26 +50,25 @@ except IOError:
 
 def threadingloop(l): 
 
-    
         if  l != float(rightAnswer):
-            # print("Killed Mutant", lines[i])
+            print("Killed Mutant", l)
             killedMutants.append(l)
         else:
-            # print("Mutant Alive", lines[i])
+            print("Mutant Alive", l)
             aliveMutants.append(l)
 
-
-for l in (0, len(lines), 6):
+linelgt = len(lines)
+for l in range(0, linelgt, 6):
+    print(l)
     try: 
         t1 = threading.Thread(target=threadingloop, args=[lines[l]])
         t2 = threading.Thread(target=threadingloop, args=[lines[l+2]])
         t3 = threading.Thread(target=threadingloop, args=[lines[l+4]])
-    
-        
+
         t1.start()
         t2.start()
         t3.start()
-    except IndexError as error:
+    except IndexError as error: 
 
         print("Killed Mutants")
         print(killedMutants)
