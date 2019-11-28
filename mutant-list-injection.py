@@ -32,7 +32,7 @@ try:
   
         temp[int(lineNumberToInject) - 1] = newLine3 + '\n'
                 
-        with open("mutants/" + str(mutantLineNumber) + str(SUTLineNumber) + ".py", "w") as f1:
+        with open("mutants/" + "MutantFile" + str(SUTLineNumber) + ".py", "w") as f1:
             f1.writelines(temp)   
             SUTLineNumber += 1
         mutantLineNumber += 1

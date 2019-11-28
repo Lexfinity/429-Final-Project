@@ -14,11 +14,13 @@ try:
     files = os.listdir("mutants")
 
     # write the correct answer on first line of the file
+    # print("Expected value the software under test: ")
     exec(open(sys.argv[1]).read())
+    # print("\n")
 
     # write the name of file then the output of the script
     for file in files:
-        print(file)
+        print("Actual value of the mutant file: " + file)
         exec(open("mutants/" + file).read())
     
     # redirect stdout back to normal
@@ -36,7 +38,7 @@ try:
 
     # iterate through every second line to check if mutant killed or still alive
     for i in range(1, len(lines), 2):
-        if int(lines[i + 1]) == int(rightAnswer):
+        if float(lines[i + 1]) != float(rightAnswer):
             # print("Killed Mutant", lines[i])
             killedMutants.append(lines[i])
         else:
@@ -48,6 +50,15 @@ try:
 
     print("Alive Mutants")
     print(aliveMutants)
+
+    output = open("mutant-generated-output.txt", 'a')
+
+    percentage = len(killedMutants) / (len(killedMutants) + len(aliveMutants))
+    output.write("Mutants killed: %d\n" %len(killedMutants))
+    output.write("Mutants alive: %d\n" %len(aliveMutants))
+    output.write("Percentage of mutants killed: %d" %len(killedMutants) + "/ %d" %(len(killedMutants) + len(aliveMutants)) + "= %f" %percentage)
+    output.close()
+    
 
 except IOError:
     type, value, traceback = sys.exc_info()

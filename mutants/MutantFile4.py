@@ -1,7 +1,7 @@
-a = 2
-b = 2
+a = 1
+b = 1
 
 a = a * b 
 b = b / b
-c = b - 2 / 4
+c = b - a /2 
 print(c)

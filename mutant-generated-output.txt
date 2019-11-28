@@ -1,25 +1,28 @@
-4
-44.py
-1
-11.py
-4
-55.py
-4
-99.py
-6
-88.py
--4
-1212.py
-4
-1111.py
-2
-1010.py
+1.5
+Actual value of the mutant file: MutantFile1.py
+1.5
+Actual value of the mutant file: MutantFile10.py
+1.0
+Actual value of the mutant file: MutantFile11.py
+1.0
+Actual value of the mutant file: MutantFile12.py
+2.5
+Actual value of the mutant file: MutantFile2.py
+2.0
+Actual value of the mutant file: MutantFile3.py
+1.0
+Actual value of the mutant file: MutantFile4.py
+0.5
+Actual value of the mutant file: MutantFile5.py
+0.5
+Actual value of the mutant file: MutantFile6.py
+-0.5
+Actual value of the mutant file: MutantFile7.py
+-1
+Actual value of the mutant file: MutantFile8.py
 0
-66.py
-0
-33.py
-4
-22.py
-4
-77.py
--2
+Actual value of the mutant file: MutantFile9.py
+3
+Mutants killed: 11
+Mutants alive: 1
+Percentage of mutants killed: 11/ 12= 0.916667
