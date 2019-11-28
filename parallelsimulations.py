@@ -9,8 +9,10 @@ try:
     start_time = time.time()
     if len(sys.argv) != 4:
         print("Invalid arguments: Please put SUT as first argument")
+    
     aliveMutants = []
     killedMutants = []
+    
     # redirect stdout to file
     sys.stdout = open('parallel-mutant-generated-output.txt', 'w')
 
@@ -55,6 +57,7 @@ def threadingloop(l):
         if  float(l) != float(rightAnswer):
             #print("Killed Mutant", l)
             killedMutants.append(l)
+
         else:
             #print("Mutant Alive", l)
             aliveMutants.append(l)
@@ -92,7 +95,10 @@ for l in range(0, linelgt, 6):
 
 percentage = len(killedMutants) / (len(killedMutants) + len(aliveMutants))
 output.write("Mutants killed: %d\n" %len(killedMutants))
+output.write("List of killed mutants: \n" + str(killedMutants) + "\n")
 output.write("Mutants alive: %d\n" %len(aliveMutants))
+output.write("List of alive mutants: \n" + str(aliveMutants) + "\n")
+output.write("\n mutants killed using test vector: <" + sys.argv[2] + "," + sys.argv[3] + ">\n")
 output.write("Percentage of mutants killed: %d" %len(killedMutants) + "/ %d" %(len(killedMutants) + len(aliveMutants)) + "= %f\n" %percentage)
 output.write("\nTIME:\n")
 output.write("--- %s seconds ---" % (time.time() - start_time))
