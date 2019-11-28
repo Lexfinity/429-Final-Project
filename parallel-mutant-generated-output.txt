@@ -1,0 +1,25 @@
+1.5
+Actual value of the mutant file: MutantFile4.py
+0.5
+Actual value of the mutant file: MutantFile11.py
+1.0
+Actual value of the mutant file: MutantFile1.py
+1.5
+Actual value of the mutant file: MutantFile5.py
+0.5
+Actual value of the mutant file: MutantFile10.py
+1.0
+Actual value of the mutant file: MutantFile2.py
+2.0
+Actual value of the mutant file: MutantFile6.py
+-0.5
+Actual value of the mutant file: MutantFile7.py
+-1
+Actual value of the mutant file: MutantFile12.py
+2.5
+Actual value of the mutant file: MutantFile3.py
+1.0
+Actual value of the mutant file: MutantFile8.py
+0
+Actual value of the mutant file: MutantFile9.py
+3

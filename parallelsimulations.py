@@ -1,58 +1,86 @@
 import threading
 import time
+import os
+import sys
 
-start_time = time.time()
+try:
+    # check args
+    if len(sys.argv) != 2:
+        print("Invalid arguments: Please put SUT as first argument")
+    aliveMutants = []
+    killedMutants = []
+    # redirect stdout to file
+    sys.stdout = open('parallel-mutant-generated-output.txt', 'w')
 
-f=open("inputs.txt", "r")
+    # store all filenames of mutants folder in files list
+    files = os.listdir("mutants")
 
-if f.mode == 'r':
-    contents = f.readlines()
-    lines = [content.replace('\n', '') for content in contents]
-    print(lines)
+    # write the correct answer on first line of the file
+    # print("Expected value the software under test: ")
+    exec(open(sys.argv[1]).read())
+    # print("\n")
 
-f.close()
+    # write the name of file then the output of the script
+    for file in files:
+        print("Actual value of the mutant file: " + file)
+        exec(open("mutants/" + file).read())
+    
+    # redirect stdout back to normal
+    sys.stdout = sys.__stdout__
 
-f=open("mutants.txt", "r")
+    # store in list all lines
+    with open("parallel-mutant-generated-output.txt") as f1:
+        lines = f1.readlines()
 
-if f.mode == 'r':
-    contents = f.readlines()
-    mLines = [content.replace('\n', '') for content in contents]
-    print(mLines)
+    # remove '\n' chars from list
+    for i in range(0, len(lines)):
+        lines[i] = lines[i].replace('\n', '')
 
-f.close()
+    rightAnswer = lines[0]
 
+    # iterate through every second line to check if mutant killed or still alive
+    
+    
 
-parallelresults = open('parallelresults.txt', 'w')
-def threadingloop(l, m): 
-
-    expected = eval(l)
-    actual = eval(m)
-    if(len(l) == len(m) and (l[0] == m[0])):
-        if(expected != actual):
-            parallelresults.write("mutant killed! \n""expression: %s" %l + "\t expected: %f\n" %expected + "expression: %s" %m + "\t actual: %f" %actual +"\n")
-            # print("mutant killed! \n""expression: %s" %l + "\t expected: %f\n" %expected + "expression: %s" %m + "\t actual: %f" %actual)
-
+except IOError:
+    type, value, traceback = sys.exc_info()
+    print('Error opening %s: %s' % (value.filename, value.strerror))
+    print("Error with file")
 
 
+def threadingloop(l): 
 
-a = input("Enter value for a : " )
-b = input("Enter value for b : " )
+    
+        if  l != float(rightAnswer):
+            # print("Killed Mutant", lines[i])
+            killedMutants.append(l)
+        else:
+            # print("Mutant Alive", lines[i])
+            aliveMutants.append(l)
 
-print("test vector < " + a + ", " + b +" > ")
 
-a = int(a)
-b = int(b) 
-
-for l in (0, len(lines), 3):
-    for m in range(len(mLines)): 
-        t = threading.Thread(target=threadingloop, args=(lines[l], mLines[m], ))
-        t2 = threading.Thread(target=threadingloop, args=(lines[l+1], mLines[m + 1], ))
-        t3 = threading.Thread(target=threadingloop, args=(lines[l+2], mLines[m + 2] , ))
+for l in (0, len(lines), 6):
+    t1 = threading.Thread(target=threadingloop, args=[lines[l]])
+    t2 = threading.Thread(target=threadingloop, args=[lines[l+2]])
+    t3 = threading.Thread(target=threadingloop, args=[lines[l+4]])
    
     
-        t.start()
-        t2.start()
-        t3.start()
-# parallelresults.write("--- %s seconds ---" % (time.time() - start_time))
-parallelresults.close()
+    t1.start()
+    t2.start()
+    t3.start()
+
+print("Killed Mutants")
+print(killedMutants)
+
+print("Alive Mutants")
+print(aliveMutants)
+
+output = open("mutant-generated-output.txt", 'a')
+
+percentage = len(killedMutants) / (len(killedMutants) + len(aliveMutants))
+output.write("Mutants killed: %d\n" %len(killedMutants))
+output.write("Mutants alive: %d\n" %len(aliveMutants))
+output.write("Percentage of mutants killed: %d" %len(killedMutants) + "/ %d" %(len(killedMutants) + len(aliveMutants)) + "= %f" %percentage)
+output.close()
+
 
