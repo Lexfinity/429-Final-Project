@@ -9,6 +9,7 @@ try:
     killedMutants = []
     # redirect stdout to file
     sys.stdout = open('mutant-generated-output.txt', 'w')
+    # sys.stdout.write("Expected value the software under test: \n")
 
     # store all filenames of mutants folder in files list
     files = os.listdir("mutants")
@@ -20,7 +21,7 @@ try:
 
     # write the name of file then the output of the script
     for file in files:
-        print("Actual value of the mutant file: " + file)
+        print(file)
         exec(open("mutants/" + file).read())
     
     # redirect stdout back to normal
@@ -54,9 +55,11 @@ try:
     output = open("mutant-generated-output.txt", 'a')
 
     percentage = len(killedMutants) / (len(killedMutants) + len(aliveMutants))
-    output.write("Mutants killed: %d\n" %len(killedMutants))
-    output.write("Mutants alive: %d\n" %len(aliveMutants))
-    output.write("Percentage of mutants killed: %d" %len(killedMutants) + "/ %d" %(len(killedMutants) + len(aliveMutants)) + "= %f" %percentage)
+    output.write("\nMutants killed: %d\n" %len(killedMutants))
+    output.write("List of killed mutants: \n" + str(killedMutants) + "\n")
+    output.write("\nMutants alive: %d\n" %len(aliveMutants))
+    output.write("List of alive mutants: \n" + str(aliveMutants) + "\n")
+    output.write("\nPercentage of mutants killed: %d" %len(killedMutants) + "/ %d" %(len(killedMutants) + len(aliveMutants)) + "= %f" %percentage)
     output.close()
     
 
