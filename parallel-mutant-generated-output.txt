@@ -1,0 +1,31 @@
+2.23606797749979
+Actual value of the mutant file: MutantFile1.py
+1.4142135623730951
+Actual value of the mutant file: MutantFile2.py
+1.0
+Actual value of the mutant file: MutantFile3.py
+2.23606797749979
+Actual value of the mutant file: MutantFile4.py
+2.23606797749979
+Actual value of the mutant file: MutantFile5.py
+2.0
+Actual value of the mutant file: MutantFile6.py
+2.449489742783178
+Actual value of the mutant file: MutantFile7.py
+2.0
+Actual value of the mutant file: MutantFile8.py
+2.0
+Actual value of the mutant file: MutantFile9.py
+1.7320508075688772
+Mutants killed: 7
+List of killed mutants: 
+['1.4142135623730951', '1.0', '2.0', '2.449489742783178', '2.0', '2.0', '1.7320508075688772']
+Mutants alive: 2
+List of alive mutants: 
+['2.23606797749979', '2.23606797749979']
+
+ mutants killed using test vector: <2,1>
+Percentage of mutants killed: 7/ 9= 0.777778
+
+TIME:
+--- 0.02493739128112793 seconds ---

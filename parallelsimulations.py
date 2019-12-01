@@ -21,13 +21,13 @@ try:
 
     # write the correct answer on first line of the file
     # print("Expected value the software under test: ")
-    exec(open(sys.argv[1]).read())
+    exec(open(sys.argv[1]).read(), {'a' : sys.argv[2] , 'b': sys.argv[3]})
     # print("\n")
 
     # write the name of file then the output of the script
     for file in files:
         print("Actual value of the mutant file: " + file)
-        exec(open("mutants/" + file).read())
+        exec(open("mutants/" + file).read(), {'a' : sys.argv[2] , 'b': sys.argv[3]})
     
     # redirect stdout back to normal
     sys.stdout = sys.__stdout__
